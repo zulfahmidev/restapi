@@ -40,7 +40,7 @@ class NoteController extends Controller
         return response()->json([
             "status" => 200,
             "message" => "Success",
-            "body" => $val->errors(),
+            "body" => $note
         ]);
     }
 
@@ -54,7 +54,7 @@ class NoteController extends Controller
             return response()->json([
                 "status" => 403,
                 "message" => "Invalid Field",
-                "body" => null
+                "body" => $val->errors()
             ]);
         }
 
