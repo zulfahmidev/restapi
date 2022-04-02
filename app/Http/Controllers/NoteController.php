@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Validator;
 
 class NoteController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         $notes = Note::all();
         return response()->json([
             "status" => 200,
@@ -17,7 +18,8 @@ class NoteController extends Controller
         ]);
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         Validator::make($request->all(), [
             "title" => "required",
             "content" => "required",
@@ -34,7 +36,8 @@ class NoteController extends Controller
         ]);
     }
 
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
         Validator::make($request->all(), [
             "title" => "required",
             "content" => "required",
@@ -54,11 +57,12 @@ class NoteController extends Controller
 
         return response()->json([
             "status" => 404,
-            "message" => "Data Note Found",
+            "message" => "Data Not Found",
             "body" => null
         ]);
     }
-    public function destroy($id) {
+    public function destroy($id)
+    {
         $note = Note::find($id);
 
         if ($note) {
@@ -73,9 +77,8 @@ class NoteController extends Controller
 
         return response()->json([
             "status" => 404,
-            "message" => "Data Note Found",
+            "message" => "Data Not Found",
             "body" => null
         ]);
     }
-    
 }
