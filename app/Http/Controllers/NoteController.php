@@ -44,7 +44,7 @@ class NoteController extends Controller
     }
 
     public function update(Request $request, $id) {
-        Validator::make($request->all(), [
+        $val = Validator::make($request->all(), [
             "title" => "required",
             "content" => "required",
         ]);
@@ -56,7 +56,7 @@ class NoteController extends Controller
                 "body" => null
             ]);
         }
-        
+
         $note = Note::find($id);
 
         if ($note) {
