@@ -18,10 +18,19 @@ class NoteController extends Controller
     }
 
     public function store(Request $request) {
-        Validator::make($request->all(), [
+        $val = Validator::make($request->all(), [
             "title" => "required",
             "content" => "required",
         ]);
+
+        if ($val->fails()) {
+            return response()->json([
+                "status" => 403,
+                "message" => "Invalid Field",
+                "body" => null
+            ]);
+        }
+
         $note = new Note();
         $note->title = $request->title;
         $note->content = $request->content;
@@ -39,6 +48,15 @@ class NoteController extends Controller
             "title" => "required",
             "content" => "required",
         ]);
+
+        if ($val->fails()) {
+            return response()->json([
+                "status" => 403,
+                "message" => "Invalid Field",
+                "body" => null
+            ]);
+        }
+        
         $note = Note::find($id);
 
         if ($note) {
