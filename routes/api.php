@@ -16,3 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::resource('/note', NoteController::class);
+
+Route::prefix('/note')->group(function() {
+    Route::get('/', [NoteController::class, 'index']);
+    Route::post('/', [NoteController::class, 'store']);
+    Route::put('/{id}', [NoteController::class, 'update']);
+    Route::delete('/{id}', [NoteController::class, 'destroy']);
+});
